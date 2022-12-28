@@ -8,8 +8,6 @@ import java.util.Stack;
 public class mainpage {
 
 	public static void main(String[] args) {
-		
-		// Testing comment for test commit
 
 		ArrayList<Shop1> shopeList = new ArrayList<Shop1>();
 		Shop1 sh = new Shop1();
