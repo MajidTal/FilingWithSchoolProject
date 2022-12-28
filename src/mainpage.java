@@ -1,18 +1,21 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class mainpage {
 
 	public static void main(String[] args) {
+		
+		// Testing comment for test commit
 
 		ArrayList<Shop1> shopeList = new ArrayList<Shop1>();
 		Shop1 sh = new Shop1();
 		Scanner sc = new Scanner(System.in);
         Stack<String>HistoryList= new Stack();
-
+        HashSet<Product1> productHash = new HashSet<Product1>();
 
 		boolean cond1 = true;
 		boolean cond2 = true;
@@ -34,9 +37,11 @@ public class mainpage {
 			 cond2 = true;
 			while (cond2) {
 				Product1 pr = new Product1();
+				
 				System.out.println("Enter the proudct name:");
 				String nnn = sc.next();
 				pr.setProductName(nnn);
+				
 				HistoryList.push(nnn);
 				
 				System.out.println("Enter the id of product:");
