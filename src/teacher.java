@@ -1,8 +1,9 @@
 package src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class teacher {
+public class teacher implements Serializable{
 	private String teName;
 	private int teAge;
 

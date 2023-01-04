@@ -1,6 +1,8 @@
 package src;
 
-public class mark {
+import java.io.Serializable;
+
+public class mark implements Serializable{
  private int mathMark;
  private int ITMark;
 public int getMathMark() {

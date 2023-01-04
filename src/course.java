@@ -1,8 +1,9 @@
 package src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class course {
+public class course implements Serializable{
 	private String nameOfCourse;
 	private int periodOfCourse;
 

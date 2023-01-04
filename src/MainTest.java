@@ -1,12 +1,15 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class MainTest {
 
 	public static void main(String[] args) {
 		ArrayList<Shop1> shopList = new ArrayList<Shop1>();
+	    HashSet<String> prodHash = new HashSet<String>();
+
 		Scanner sc = new Scanner(System.in);
 
 		boolean condition1 = true;
@@ -18,6 +21,8 @@ public class MainTest {
 			System.out.println("To print the result press 2");
 			System.out.println("To get history press 3");
 			System.out.println("To exit the page press 4");
+			System.out.println("To remove duplicate press 5");
+
 			int input = sc.nextInt();
 
 			if (input == 1) {
@@ -36,10 +41,11 @@ public class MainTest {
 					System.out.println("Please enter product name");
 					String aa = sc.next();
 					pr.setProductName(aa);
-
-					System.out.println("Please enter product location ");
+					prodHash.add(aa);
+					
+					System.out.println("Please enter product ID ");
 					int bb = sc.nextInt();
-					pr.setProductId(bb);
+					pr.setProductId(input);
 
 					condition3 = true;
 					while (condition3) {
@@ -77,7 +83,7 @@ public class MainTest {
 					if (s.equals("yes")) {
 						System.out.println("print the shop");
 					} else if (s.equals("no")) {
-						condition1 = false;
+						condition2 = false;
 					}
 				}
 
@@ -95,10 +101,13 @@ public class MainTest {
 					for(Product1 xx : x.productList)
 					{
 						System.out.println("--------<product details>--------");
-						System.out.println("the product name is " + xx.getProductName());
-						System.out.println("the product id is "+ xx.getProductId());
+						for (String hashpName : prodHash) {
+						System.out.println("the product name is " + hashpName);
+						}
+						System.out.println("the product id is "+ xx.getProductId());						
 						
-						for(Item1 xxx : xx.itemList)
+						
+						for(Item1 xxx : xx.itemList1)
 						{
 							System.out.println("--------<item details>--------");
 							System.out.println("the name of item is " + xxx.getItemName());
@@ -110,6 +119,8 @@ public class MainTest {
 
 					
 				}
+				
+
 				
 				
 				
@@ -125,8 +136,9 @@ public class MainTest {
 
 			}
 
-		}
+			
+
 
 	}
 
-}
+}}

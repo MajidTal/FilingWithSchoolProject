@@ -3,10 +3,14 @@ package src;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
@@ -15,15 +19,14 @@ public class whileCondition {
 
 	public static void main(String[] args) {
 
-	
 		boolean condition = true;
 		boolean condation1 = true;
 		boolean condation2 = true;
 
-		 // to let the user insert the values 
+		// to let the user insert the values
 		Scanner SC = new Scanner(System.in);
-        Stack<String>StackList= new Stack();
-        
+		Stack<String> StackList = new Stack();
+
 // arrayListDepartment
 		ArrayList<Department> departmentArray = new ArrayList<Department>();
 
@@ -34,26 +37,25 @@ public class whileCondition {
 			System.out.println("press 3 to print the results ");
 			System.out.println("press 4 to print the history ");
 			System.out.println("press 5 to search the history ");
-			
+
 			int input = SC.nextInt();
-			
+
 			if (input == 1) {
-				
-				//This is the first constract
+
+				// This is the first constract
 				Department de = new Department();
 				System.out.println("Enter the Department ID");
-				int idOfDepartment =SC.nextInt();
+				int idOfDepartment = SC.nextInt();
 				de.setIdOfDepartment(idOfDepartment);
-			    String iddep= Integer.toString(idOfDepartment);
+				String iddep = Integer.toString(idOfDepartment);
 				StackList.push(iddep);
-                
-				
+
 				System.out.println("Enter the Department NAME");
 				String nameString = SC.next();
 				de.setNameOfDepartment(nameString);
 				StackList.push(nameString);
-				 
-				//condition 1 to enter teacher details
+
+				// condition 1 to enter teacher details
 
 				condation1 = true;
 
@@ -64,43 +66,72 @@ public class whileCondition {
 					te.setteName(tName);
 					StackList.push(tName);
 
-
 					System.out.println("Enter the age of teacher");
-					Integer age=SC.nextInt();
-					te.setteAge( age);
+					Integer age = SC.nextInt();
+					te.setteAge(age);
 					StackList.push(age.toString());
 
-					//condition 2 to enter student details
-                     condation2=true;
+					// condition 2 to enter student details
+					condation2 = true;
 					while (condation2) {
 						Student st = new Student();
 						System.out.println("Enter the student name");
-						String sName=SC.next();
+						String sName = SC.next();
 						st.setName(sName);
 						StackList.push(sName);
-					
 
 						System.out.println("Enter the gender of student");
-						String gStudent=SC.next();
+						String gStudent = SC.next();
 						st.setStugender(gStudent);
 						StackList.push(gStudent);
-
+						
+						try{
+						       FileOutputStream file = new FileOutputStream("student.txt");
+						       ObjectOutputStream out = new ObjectOutputStream(file);
+						       out.writeObject(st);
+						       out.close();
+						       file.close();
+						       System.out.println("serialized and saved");
+						   }catch (Exception e){
+						     e.printStackTrace();
+						
+						   }
+						
+						  try
+						    {
+						        // Reading the object from a file
+						        FileInputStream file = new FileInputStream("student.txt");
+						        ObjectInputStream in = new ObjectInputStream(file);
+						        // Method for deserialization of object
+						        Student object1 = (Student) in.readObject();
+						        in.close();
+						        file.close();
+						        System.out.println("Object has been deserialized ");
+						        System.out.println("Student Name:  " + object1.getName());
+						        System.out.println("Student ID:  " + object1.getStugender());
+						    }
+						    catch(IOException ex)
+						    {
+						        System.out.println("IOException is caught");
+						    }
+						    catch(ClassNotFoundException ex)
+						    {
+						        System.out.println("ClassNotFoundException is caught");
+						    }
 						
 						
 						
-
 						boolean condation3 = true;
 						while (condation3) {
 							course co = new course();
-							
+
 							System.out.println(" Enter the name of the course");
-							String nCourse=SC.next();
+							String nCourse = SC.next();
 							co.setCourseName(nCourse);
 							StackList.push(nCourse);
-							
-							
+
 							System.out.println(" Enter the period of the course");
-							Integer yy=SC.nextInt();
+							Integer yy = SC.nextInt();
 							co.setTimeOfCourse(yy);
 							StackList.push(yy.toString());
 
@@ -108,13 +139,12 @@ public class whileCondition {
 							while (condation4) {
 								mark ma = new mark();
 								System.out.println(" Enter the math mark please");
-								Integer mMArk=SC.nextInt();
+								Integer mMArk = SC.nextInt();
 								ma.setMathMark(mMArk);
 								StackList.push(mMArk.toString());
-								
-								
+
 								System.out.println(" Enter the IT mark please");
-								Integer itMark=SC.nextInt();
+								Integer itMark = SC.nextInt();
 								ma.setITMark(itMark);
 								StackList.push(itMark.toString());
 								co.markList.add(ma);
@@ -132,7 +162,7 @@ public class whileCondition {
 							st.courseList.add(co);
 							System.out.println("Do you want to add others course yes / no");
 							String ww = SC.next();
-							
+
 							if (ww.equals("yes")) {
 								System.out.println("Enter the details of course");
 							} else if (ww.equals("no")) {
@@ -151,8 +181,8 @@ public class whileCondition {
 
 							condation2 = false;
 						}
-						
-						//Testing git
+
+						// Testing git
 
 					}
 
@@ -177,7 +207,6 @@ public class whileCondition {
 					input = 1;
 				}
 
-			
 			}
 
 			if (input == 2) {
@@ -186,67 +215,51 @@ public class whileCondition {
 
 			}
 
-			else if(input ==4)
-			{
+			else if (input == 4) {
 				System.out.println("the hisotry");
-				for(String s:StackList )
-				{
+				for (String s : StackList) {
 					System.out.println(s);
 				}
-				
-				
-				try 
-				{
-					BufferedWriter writer= new BufferedWriter(new FileWriter("output.txt"));
+
+				try {
+					BufferedWriter writer = new BufferedWriter(new FileWriter("output.pdf"));
 					writer.write("\nthis is your history list");
-					for(String v :StackList )
-					{
+					for (String v : StackList) {
 						writer.write("\n" + v);
 					}
 					writer.close();
-				}
-				catch (IOException o) 
-				{
+				} catch (IOException o) {
 					o.printStackTrace();
 				}
 			}
-			
-				else if(input == 5) {
-				
-					try {
-					BufferedReader br= new BufferedReader(new FileReader("output.txt"));
+
+			else if (input == 5) {
+
+				try {
+					BufferedReader br = new BufferedReader(new FileReader("output.pdf"));
 					System.out.println("Enter the word to search");
-					String searchWord =SC.next();
+					String searchWord = SC.next();
 					String s;
-					int count=0;
-					
-					while((s=br.readLine())!=null)
-					{
-						if(s.equals(searchWord))
-						{
+					int count = 0;
+
+					while ((s = br.readLine()) != null) {
+						if (s.equals(searchWord)) {
 							count++;
 						}
-						
+
 					}
-				if(count!=0)
-				{
-					System.out.println("The given word is present for " +count+ " Times in the file");
+					if (count != 0) {
+						System.out.println("The given word is present for " + count + " Times in the file");
+					} else {
+						System.out.println("the given word is not present in the file");
+					}
+					br.close();
+				} catch (IOException except) {
+					except.printStackTrace();
 				}
-				else
-				{
-					System.out.println("the given word is not present in the file");
-				}
-				br.close();
+				
 			}
-					catch(IOException except)
-					{
-						except.printStackTrace();
-					}
-				}
-			
-			
-		
-			
+
 			else if (input == 3) {
 
 				for (Department element : departmentArray) {
@@ -255,21 +268,17 @@ public class whileCondition {
 					System.out.println("the Department ID is " + element.getIdOfDepartment());
 					System.out.println("---------------<>---------------");
 
-					
 					for (teacher elementT : element.teacherArray) {
 						System.out.println("---------- Techer Details -------------");
 						System.out.println("The Teacher name is: " + elementT.getteName());
 						System.out.println("The Teacher age is: " + elementT.getteAge());
 						System.out.println("---------------<>---------------");
 
-						
-						
 						for (Student elementS : elementT.studentList) {
 							System.out.println("---------- Student Details -------------");
 							System.out.println("The Name of student is " + elementS.getName());
 							System.out.println("The gender of student is " + elementS.getStugender());
 							System.out.println("---------------<>---------------");
-
 
 							for (course elementSS : elementS.courseList) {
 								System.out.println("---------- Course Details -------------");
@@ -277,14 +286,12 @@ public class whileCondition {
 								System.out.println("The period of course is " + elementSS.getTimeOfCourse());
 								System.out.println("---------------<>---------------");
 
-
 								for (mark elementsR : elementSS.markList) {
 									System.out.println("---------- mark Details -------------");
 
 									System.out.println("The math mark is " + elementsR.getMathMark());
 									System.out.println("The IT mark is " + elementsR.getITMark());
 									System.out.println("---------------<>---------------");
-
 
 								}
 
