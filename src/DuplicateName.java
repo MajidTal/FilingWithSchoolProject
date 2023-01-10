@@ -6,32 +6,25 @@ public class DuplicateName {
 	
 	String[] names=	{"Atyab", "Fatima", "Saeed", "Abdullah", "Malak", "Fatima", "Daniyal", "atyab", "Abdullah"};
 	
-	
-	//= new int[names.length];
-	
-	
-		for (int i = 0; i < names.length; i++) {
-			int counts= 1 ;
-			for (int j=i+1; j < names.length; j++) {
-				if (names[i].equals(names[j]))
-
+	    int counts ;
+		for (int i = 0; i < names.length; i++) 
+		{
+			counts= 1;
+			for (int j=i+1; j < names.length; j++) 
+			{
+				if (names[i].equals(names[j]))   
 				{
 					counts++;
-					names[i]=" ";
+					names[j]="0";
 				}
-				
 			}
-			if(!names[i].equals(" "))
+			if(names[i]!="0")
 			{
-		System.out.println( names + " is repeted " +counts+ " times");
+		        System.out.println( names[i] + " is repeted " +counts+ " times");
 			}	
 	}
 		
-	/*	for (int j = 0; j < names.length; j++ ) {
-             String name =names[j];
-             int count =counts[j];
-		*/		
-
-			}
+}
 
 		}
+
