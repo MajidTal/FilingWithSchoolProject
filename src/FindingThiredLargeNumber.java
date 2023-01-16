@@ -3,9 +3,11 @@ package src;
 
 import java.util.Arrays;
 
-public class GetingHighestSecondNumber {
+public class FindingThiredLargeNumber {
 
+	
 	public static void main(String[] args) {
+		
 
 		int[] arryNumber = { 1, 5, 9, 3, 7, 8, 2, 4, 6 };
 		int a = arryNumber.length;
