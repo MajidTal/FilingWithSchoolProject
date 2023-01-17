@@ -11,12 +11,10 @@ public class MaximumFourthIntegersNumbersFromArray {
 	Arrays.sort(Array);   
 	System.out.print("the elements of array are:");
 	for(int i=0; i<Array.length; i++) {
-		
 		int result1 = Array[5];
 		int result2 = Array[4];
 		int result3 = Array[3];
 		int result4 = Array[2];
-		
 		System.out.print(Array[i]);
 	}
 	System.out.println("");
